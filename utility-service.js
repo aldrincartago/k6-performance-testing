@@ -10,14 +10,14 @@ export const options = {
       gracefulStop: "30s",
       stages: [
         { target: 1, duration: "1m" }, //warm-up
-        { target: 180, duration: "5m" }, //ramp-up
-        { target: 180, duration: "10m" }, //sustained load
-        { target: 0, duration: "5m" }, //ramp-down
+        { target: 167, duration: "10m" }, //ramp-up
+        { target: 167, duration: "10m" }, //sustained load
+        { target: 0, duration: "10m" }, //ramp-down
       ],
       preAllocatedVUs: 20,
       startRate: 1,
       timeUnit: "1s",
-      maxVUs: 600,
+      maxVUs: 100000,
     },
   },
 };
