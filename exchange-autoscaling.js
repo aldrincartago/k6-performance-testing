@@ -3,18 +3,6 @@ import { check, sleep } from "k6";
 import { randomString } from "https://jslib.k6.io/k6-utils/1.2.0/index.js";
 
 export const options = {
-  ext: {
-    loadimpact: {
-      distribution: {
-        "amazon:sg:singapore": {
-          loadZone: "amazon:sg:singapore",
-          percent: 100,
-        },
-      },
-      apm: [],
-    },
-  },
-  thresholds: {},
   scenarios: {
     Exchange_API: {
       executor: "ramping-arrival-rate",
@@ -22,15 +10,14 @@ export const options = {
       gracefulStop: "30s",
       stages: [
         { target: 1, duration: "1m" }, //warm-up
-        { target: 35, duration: "10m" }, //ramp-up
-        { target: 35, duration: "20m" }, //sustained load
+        { target: 20, duration: "10m" }, //ramp-up
+        { target: 20, duration: "10m" }, //sustained load
         { target: 0, duration: "10m" }, //ramp-down
       ],
       preAllocatedVUs: 20,
       startRate: 1,
       timeUnit: "1s",
-      maxVUs: 999999,
-      // exec: 'exchange_API',
+      maxVUs: 100000,
     },
   },
 };

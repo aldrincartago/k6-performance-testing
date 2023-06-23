@@ -1,11 +1,12 @@
 import http from "k6/http";
 import { check, sleep } from "k6";
-import wasmPayload from "./wasm-payload";
+
 
 const wasmURL =
   "https://excel.test.coherent.global/coherent/api/V3/folders/Regression%20Testing/services/PAR%20template_v3/Execute";
 const loginUrl =
   "https://utilities.test.coherent.global/coherent/api/v1/internal/permission_elevation/elevate";
+var jwt = '';
 
 export function setup() {
   let tokenPayload = JSON.stringify({
@@ -27,8 +28,9 @@ export function setup() {
   check(res, {
     "Elevate Token successful": (r) => r.status === 201,
   });
-
-  return { jwt: res.json("data.jwt") };
+  jwt = res.json("data.jwt");
+  console.log(jwt);
+  // return { jwt: res.json("data.jwt") };
   
 }
 

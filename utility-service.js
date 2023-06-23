@@ -1,6 +1,5 @@
 import http from "k6/http";
 import { check, sleep } from "k6";
-import { randomString } from "https://jslib.k6.io/k6-utils/1.2.0/index.js";
 
 export const options = {
   scenarios: {
@@ -10,8 +9,8 @@ export const options = {
       gracefulStop: "30s",
       stages: [
         { target: 1, duration: "1m" }, //warm-up
-        { target: 167, duration: "10m" }, //ramp-up
-        { target: 167, duration: "10m" }, //sustained load
+        { target: 250, duration: "10m" }, //ramp-up
+        { target: 250, duration: "10m" }, //sustained load
         { target: 0, duration: "10m" }, //ramp-down
       ],
       preAllocatedVUs: 20,
@@ -39,7 +38,7 @@ export default function () {
 
   // Payload
   let protectedExchangePayload = JSON.stringify({
-    key: "71250604-9d62-44d2-86f9-c8f9849983ae",
+    key: "88ee7af6-8a13-47c8-94e5-ffc572e0daa5",
   });
 
   const protectedRes = http.post(

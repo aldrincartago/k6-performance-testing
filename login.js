@@ -1,7 +1,7 @@
 import http from "k6/http";
 import { check } from "k6";
 
-export function elevate() {
+export default function() {
   let loginUrl =
     "https://utilities.test.coherent.global/coherent/api/v1/internal/permission_elevation/elevate";
   let tokenPayload = JSON.stringify({
@@ -24,5 +24,6 @@ export function elevate() {
 
   // Extract JWT from response
   var jwt = loginRes.json("data.jwt");
-  return {jwt};
+  console.log(jwt);
+  return jwt;
 }
